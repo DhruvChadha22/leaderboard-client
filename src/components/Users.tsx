@@ -33,12 +33,12 @@ export const Users = () => {
     };
 
     const handlePointsClaim = async (userId?: string) => {
-        claimMutation.mutate(userId)
-            .then((data) => {
-                toast.success(`${data.name} was awarded +${data.points} points`, {
-                    position: "bottom-center",
-                });
-            });
+        const data = await claimMutation.mutate(userId);
+            
+        toast.success(`${data.name} was awarded +${data.points} points`, {
+            position: "bottom-center",
+        });
+            
         invalidateLeaderboard();
     };
 
